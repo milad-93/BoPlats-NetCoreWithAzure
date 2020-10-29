@@ -1,0 +1,4 @@
+.NetCore
+MVC
+ORM
+Azure
