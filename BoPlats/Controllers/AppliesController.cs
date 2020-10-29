@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BoPlats.Models;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BoPlats.Controllers
 {
@@ -20,6 +21,7 @@ namespace BoPlats.Controllers
         }
 
         // GET
+        [Authorize]
         public async Task<IActionResult> Index(string ApplicationAdress, string SearchString)
         {
 

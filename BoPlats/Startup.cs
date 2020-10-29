@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;            //For security.
 
 namespace BoPlats
 {
@@ -24,6 +25,11 @@ namespace BoPlats
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // service for luginFunction obs loginpath
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                  .AddCookie(options => { options.LoginPath = "/User/Index/"; }); //loginPAth.
+
+
             services.AddControllersWithViews();
 
             services.AddDbContext<DataContext_Milad>(options =>
@@ -33,6 +39,11 @@ namespace BoPlats
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            // använda autensering
+            app.UseAuthentication();
+      
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -1,0 +1,48 @@
+﻿@model BoPlats.Models.UserLogIn
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Login</title>
+
+</head>
+<body>
+    <div class="jumbotron ">
+        
+
+            @using (Html.BeginForm())
+            {
+               <p>@Html.ActionLink("Signout","SignOut")</p>
+               <p>@Html.ActionLink("Signout", "SignOut","User")</p> 
+                <table>
+                    <tr>
+                        <td>Admin UserName</td>
+                        <td>@Html.EditorFor(m => m.Username)  </td>
+                    </tr>
+
+                    <tr>
+                        <td>Password</td>
+                        <td>@Html.PasswordFor(m => m.Password)  </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+
+                            <input type="submit" value="Log in" />
+                        </td>
+                    </tr>
+
+                </table>
+                <p> 
+                    @ViewBag.ErrorMessage
+                </p>
+                }
+      
+    </div>
+</body>
+</html>

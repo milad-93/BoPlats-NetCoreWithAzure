@@ -1,6 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
+ 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] -Milads  BoPlats</title>
@@ -19,12 +21,26 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Apartments" asp-action="Index">Register Apartment for rent</a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Apartments" asp-action="Index">Register Apartment for rent</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Applies" asp-action="Index">Apply for an apartment</a>
+                            <a class="nav-link text-dark " asp-area="" asp-controller="Applies" asp-action="Index">Apply for an apartment</a>
                         </li>
-                    </ul>
+                        @if (User.Identity.IsAuthenticated)@* Check is signed in *@
+                        {
+                            @User.Identity.Name
+                            <li class="nav-item">
+                                <a class="nav-link text-dark alert-warning"> @Html.ActionLink("Signout", "SignOut", "User")</a>
+                            </li>
+                        }
+                        else
+                        {
+                         <li class="nav-item">
+                            <a class="nav-link text-dark alert-dismissible" asp-area="SignOut" asp-controller="User" asp-action="Index">Log in- Admin</a>
+                         </li>
+                        }
+
+                        </ul>
                 </div>
             </div>
         </nav>
